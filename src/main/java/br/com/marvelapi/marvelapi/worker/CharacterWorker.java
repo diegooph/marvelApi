@@ -1,6 +1,7 @@
 package br.com.marvelapi.marvelapi.worker;
 
 import br.com.marvelapi.marvelapi.dao.*;
+import br.com.marvelapi.marvelapi.entity.*;
 import br.com.marvelapi.marvelapi.entity.Character;
 
 import java.util.List;
@@ -21,26 +22,26 @@ public class CharacterWorker {
     }
 
 
-    public Character findCharacterById(Integer id){
-        return characterDao.getById(id);
+    public Character findCharacterById(String characterCustomId){
+        return characterDao.findByCustomId(characterCustomId);
     }
 
     public List<Character> findAll(){
        return characterDao.findAll();
     }
 
-    public List<Character> findComicsByCharacterId() {
-        return null;
+    public List<Comics> findComicsByCharacterId(String characterCustomId) {
+       return characterDao.findByCustomId(characterCustomId).getComics();
     }
-    public List<Character> findEventsByCharacterId() {
-        return null;
-    }
-
-    public List<Character> findSeriesByCharacterId() {
-        return null;
+    public List<Events> findEventsByCharacterId(String characterCustomId) {
+        return  characterDao.findByCustomId(characterCustomId).getEvents();
     }
 
-    public List<Character> findStoriesByCharacterId() {
-        return null;
+    public List<Series> findSeriesByCharacterId(String characterCustomId) {
+        return characterDao.findByCustomId(characterCustomId).getSeries();
+    }
+
+    public List<Stories> findStoriesByCharacterId(String characterCustomId) {
+        return characterDao.findByCustomId(characterCustomId).getStories();
     }
 }

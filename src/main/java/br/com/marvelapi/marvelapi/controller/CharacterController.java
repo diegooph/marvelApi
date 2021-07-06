@@ -1,6 +1,7 @@
 package br.com.marvelapi.marvelapi.controller;
 
 import br.com.marvelapi.marvelapi.dao.*;
+import br.com.marvelapi.marvelapi.entity.*;
 import br.com.marvelapi.marvelapi.entity.Character;
 import br.com.marvelapi.marvelapi.worker.CharacterWorker;
 import br.com.marvelapi.marvelapi.worker.MarvelIntegration;
@@ -31,28 +32,28 @@ public class CharacterController {
     }
 
     @GetMapping("/{characterId}")
-    public Character getCharacterById(@PathVariable int characterId) {
+    public Character getCharacterById(@PathVariable String characterId) {
         return characterWorker.findCharacterById(characterId);
     }
 
     @GetMapping("/{characterId}/comics")
-    public List<Character> findComicsByCharacterId(@PathVariable int characterId) {
-        return characterWorker.findComicsByCharacterId();
+    public List<Comics> findComicsByCharacterId(@PathVariable String characterId) {
+        return characterWorker.findComicsByCharacterId(characterId);
     }
 
     @GetMapping("/{characterId}/events")
-    public List<Character> findEventsByCharacterId(@PathVariable int characterId) {
-        return characterWorker.findEventsByCharacterId();
+    public List<Events> findEventsByCharacterId(@PathVariable String characterId) {
+        return characterWorker.findEventsByCharacterId(characterId);
     }
 
     @GetMapping("/{characterId}/series")
-    public List<Character> findSeriesByCharacterId(@PathVariable int characterId) {
-        return characterWorker.findSeriesByCharacterId();
+    public List<Series> findSeriesByCharacterId(@PathVariable String characterId) {
+        return characterWorker.findSeriesByCharacterId(characterId);
     }
 
     @GetMapping("/{characterId}/stories")
-    public List<Character> findStoriesByCharacterId(@PathVariable int characterId) {
-        return characterWorker.findStoriesByCharacterId();
+    public List<Stories> findStoriesByCharacterId(@PathVariable String characterId) {
+        return characterWorker.findStoriesByCharacterId(characterId);
     }
 
     //extra endpoint - Salva um novo Character pelo Id da marvel
